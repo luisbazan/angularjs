@@ -1,0 +1,46 @@
+<div class="tab-pane downloads fade in active" id="downloads" ng-repeat="release in vm.downloads">
+  <h4>{{release.rtype}}</h4>
+  <ul>
+    <li ng-repeat="item in release.rarray">
+      <div class="download-details">
+        <span class="environment-name">{{item.environmentName}}</span>
+        <span class="environment-date">{{item.currentVersion}}</span>
+        <span class="environment-purpose">{{item.purpose}}</span>
+      </div>
+      <div class="link-set access">
+        <span class="environment-link wow">
+        <a href="#">
+        <span>WOW</span>
+        </a>
+        </span>
+        <span class="environment-link admin">
+        <a href="#">
+        <span>ADMIN</span>
+        </a>
+        </span>
+        <span class="environment-link classic">
+        <a href="#">
+        <span>CLASSIC</span>
+        </a>
+        </span>
+      </div>
+      <div class="link-set others">
+        <span class="environment-link proxy">
+        <a href="#">
+        <span>PROXY</span>
+        </a>
+        </span>
+        <span class="environment-link javadocs">
+        <a href="#">
+        <span>JAVADOCS</span>
+        </a>
+        </span>
+        <span class="environment-link request">
+        <a href="#">
+        <span>REQUEST ACCESS</span>
+        </a>
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>

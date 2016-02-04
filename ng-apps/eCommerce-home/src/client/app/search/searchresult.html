@@ -1,0 +1,38 @@
+<div class="news-container">
+  <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+          <!-- News item starts -->
+          <div class="news-item news-small" data-ng-repeat="n in vm.allNews">
+              <!-- News Img -->
+              <div class="news-img">
+                  <!-- Image -->
+                  <a href="#/news/{{n.id}}"><img src="{{n.imgSrc}}" alt="" class="img-responsive" /></a>
+              </div>
+              <!-- News Content -->
+              <div class="news-content">
+                  <!-- Heading -->
+                  <h3><a href="#/news/{{n.id}}">{{n.title}}</a></h3>
+                  <!-- News Meta -->
+                  <div class="news-meta">
+                      Modified by
+                      <!-- Author -->
+                      <span class="news-author"><a href="#">{{n.lastUpdateUserId.name}}</a></span>
+                      -
+                      <!-- Date -->
+                      <span class="news-date">{{n.lastUpdateTime}}</span>
+                  </div>
+                  <!-- Excerpt -->
+                  <p>{{n.description}}</p>
+              </div>
+          </div>
+          <!-- News item ends -->
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+          <div class="button-container">
+              <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.loadMoreNews()">Load More News</button>
+          </div>
+      </div>
+  </div>
+</div>

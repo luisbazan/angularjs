@@ -1,0 +1,22 @@
+<div class="outer">
+    <!-- Main Header -->
+    <div data-ng-include="'app/layout/header.html'"></div>
+
+    <!-- Main content starts -->
+    <div class="main-block">
+        <!-- Page heading two starts -->
+        <div data-ng-include="'app/layout/breadcrumbs.html'"></div>
+
+        <!-- Page heading two ends -->
+        <div class="container">
+            <div class="row">
+                <div data-ng-view class="col-sm-7 col-md-8 col-lg-8">
+                    <!-- Main Body -->
+                </div>
+                <div class="col-sm-5 col-md-4 col-lg-4">
+                    <div data-ng-include="'app/layout/sidebar.html'">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

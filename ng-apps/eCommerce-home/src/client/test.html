@@ -1,0 +1,656 @@
+</head>
+﻿<!DOCTYPE html>
+<html data-ng-app="app">
+   <head>
+      <style>
+         /* This helps the ng-show/ng-hide animations start at the right place. */
+         /* Since Angular has this but needs to load, this gives us the class early. */
+         .ng-hide {
+         display: none!important;
+         }
+      </style>
+      <title data-ng-bind="title">EBMS Home</title>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+      <!-- inject-vendor:css -->
+      <!-- endinject -->
+      <!-- inject:css -->
+      <!-- endinject -->
+   <body>
+      <div>
+         <div id="consoleNavHeader" style="visibility: visible;">
+            <div id="awsgnav" class="tm-both">
+               <div id="nav-menubar" style="z-index: auto;">
+                  <a id="nav-home-link" class="nav-elt" href="https://us-west-2.console.aws.amazon.com/console/home?region=us-west-2" target="_top" title="Console Home">
+                     <div id="nav-logo">&nbsp;</div>
+                  </a>
+                  <div class="nav-menu-separator">&nbsp;</div>
+                  <a id="nav-resourceGroupsMenu" class="nav-elt nav-menu" href="#" data-menu-content="resourceGroupsMenuContent">
+                     <div class="nav-elt-label">AWS</div>
+                     <div class="nav-menu-arrow">&nbsp;</div>
+                  </a>
+                  <div class="nav-menu-separator">&nbsp;</div>
+                  <a id="nav-servicesMenu" class="nav-elt nav-menu" href="#" data-menu-content="servicesMenuContent">
+                     <div class="nav-elt-label">Services</div>
+                     <div class="nav-menu-arrow">&nbsp;</div>
+                  </a>
+                  <div class="nav-menu-separator">&nbsp;</div>
+                  <ul id="nav-shortcutBar" style="width: 475.203px;"></ul>
+                  <a id="nav-shortcutMenu" class="nav-elt nav-menu" href="#" data-menu-content="shortcutMenuContent" style="position: absolute; left: 270.734px;">
+                     <div class="nav-elt-label">Edit</div>
+                     <div class="nav-menu-arrow">&nbsp;</div>
+                     <div id="nav-shortcut-menu-separator">&nbsp;</div>
+                  </a>
+                  <div id="nav-menu-right">
+                     <a id="nav-usernameMenu" href="#" class="nav-elt nav-menu" data-menu-content="usernameMenuContent">
+                        <div class="nav-elt-label" title="Luis">Luis</div>
+                        <div class="nav-menu-arrow">&nbsp;</div>
+                     </a>
+                     <div class="nav-menu-separator">&nbsp;</div>
+                     <a id="nav-regionMenu" class="nav-elt nav-menu" href="#" data-menu-content="regionMenuContent">
+                        <div class="nav-elt-label">Oregon</div>
+                        <div class="nav-menu-arrow">&nbsp;</div>
+                     </a>
+                     <div class="nav-menu-separator">&nbsp;</div>
+                     <a id="nav-helpMenu" href="#" class="nav-elt nav-menu" data-menu-content="helpMenuContent">
+                        <div class="nav-elt-label">Support</div>
+                        <div class="nav-menu-arrow">&nbsp;</div>
+                     </a>
+                  </div>
+               </div>
+               <div class="nav-menu-content" id="resourceGroupsMenuContent">
+                  <h1>Resource Groups</h1>
+                  <div class="awsc-rg-grouplinks">
+                     <div id="awsc-rg-empty" class="awsc-rg-message">A resource group is a collection of resources that share one or more tags.</div>
+                     <div id="awsc-rg-error" class="awsc-rg-message" style="display: none">An error occurred while loading Resource Groups.</div>
+                     <ul class="awsc-rg-column" id="awsc-rg-column-left" style="display: none"></ul>
+                     <ul class="awsc-rg-column" id="awsc-rg-column-right" style="display: none"></ul>
+                  </div>
+                  <a id="awsc-rg-createResourceGroup" target="_top" href="https://resources.console.aws.amazon.com/r/group">Create a Resource Group</a>
+                  <a id="awsc-rg-tagEditor" target="_top" href="https://resources.console.aws.amazon.com/r/tags">Tag Editor</a>
+               </div>
+               <div class="nav-menu-content nav-menu-content-fullwidth" id="servicesMenuContent" style="width: 932px; top: 40px; display: none; height: 648px;">
+                  <div class="service-menu-column" id="service-history-column">
+                     <div id="service-history-section">
+                        <h1>History</h1>
+                        <ul id="nav-history">
+                           <li data-service-id="home" data-service-href="https://us-west-2.console.aws.amazon.com/console/home?region=us-west-2" class="service-link service-link-home">
+                              <a href="https://us-west-2.console.aws.amazon.com/console/home?region=us-west-2" target="_top">
+                              <span class="service-icon-wrapper">
+                              <span class="service-icon service-icon-size-med service-icon-svc-home" style="background-position: -NaNpx -24px">&nbsp;</span>
+                              </span>
+                              <span class="service-label">Console Home</span>
+                              </a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="s3" data-service-href="https://console.aws.amazon.com/s3/home?region=us-west-2" class="service-link service-link-s3">
+                              <a href="https://console.aws.amazon.com/s3/home?region=us-west-2" target="_top">
+                              <span class="service-icon-wrapper">
+                              <span class="service-icon service-icon-size-med service-icon-svc-s3" style="background-position: -96px -24px">&nbsp;</span>
+                              </span>
+                              <span class="service-label">S3</span>
+                              </a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="service-menu-column" id="service-categories">
+                     <a class="service-category-link active" id="allServicesLink" data-menu-content-id="allServices" href="#">
+                        All AWS Services
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="compute">
+                        Compute
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="storage">
+                        Storage &amp; Content Delivery
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="database">
+                        Database
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="networking">
+                        Networking
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="developer_tools">
+                        Developer Tools
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="management_tools">
+                        Management Tools
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="security_and_identity">
+                        Security &amp; Identity
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="analytics">
+                        Analytics
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="internet_of_things">
+                        Internet of Things
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="mobileservices">
+                        Mobile Services
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="appservices">
+                        Application Services
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                     <a class="service-category-link" href="#" data-menu-content-id="categoryServices" data-service-category="applications">
+                        Enterprise Applications
+                        <div class="nav-selected-category-arrow">&nbsp;</div>
+                     </a>
+                  </div>
+                  <div id="allServices">
+                     <ul class="service-menu-column service-name-column">
+                        <li data-service-id="ag" data-service-href="https://us-west-2.console.aws.amazon.com/apigateway/home?region=us-west-2" class="service-link service-link-ag">
+                           <a href="https://us-west-2.console.aws.amazon.com/apigateway/home?region=us-west-2" target="_top">
+                           <span class="service-icon-wrapper">
+                           <span class="service-icon service-icon-size-med service-icon-svc-ag" style="background-position: -1344px -24px">&nbsp;</span>
+                           </span>
+                           <span class="service-label">API Gateway</span>
+                           </a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="aps" data-service-href="https://console.aws.amazon.com/appstream/home?region=us-west-2" class="service-link service-link-aps">
+                           <a href="https://console.aws.amazon.com/appstream/home?region=us-west-2" target="_top">
+                           <span class="service-icon-wrapper">
+                           <span class="service-icon service-icon-size-med service-icon-svc-aps" style="background-position: -832px -24px">&nbsp;</span>
+                           </span>
+                           <span class="service-label">AppStream</span>
+                           </a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="iot" data-service-href="https://us-west-2.console.aws.amazon.com/iot/home?region=us-west-2" class="service-link service-link-iot">
+                           <a href="https://us-west-2.console.aws.amazon.com/iot/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-iot" style="background-position: -1632px -24px">&nbsp;</span></span><span class="service-label">AWS IoT</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="acm" data-service-href="https://console.aws.amazon.com/acm/home?region=us-west-2" class="service-link service-link-acm">
+                           <a href="https://console.aws.amazon.com/acm/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-acm" style="background-position: -1696px -24px">&nbsp;</span></span><span class="service-label">Certificate Manager</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="cfo" data-service-href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2" class="service-link service-link-cfo">
+                           <a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cfo" style="background-position: -512px -24px">&nbsp;</span></span><span class="service-label">CloudFormation</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="cfr" data-service-href="https://console.aws.amazon.com/cloudfront/home?region=us-west-2" class="service-link service-link-cfr">
+                           <a href="https://console.aws.amazon.com/cloudfront/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cfr" style="background-position: -416px -24px">&nbsp;</span></span><span class="service-label">CloudFront</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="cs" data-service-href="https://us-west-2.console.aws.amazon.com/cloudsearch/home?region=us-west-2" class="service-link service-link-cs">
+                           <a href="https://us-west-2.console.aws.amazon.com/cloudsearch/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cs" style="background-position: -576px -24px">&nbsp;</span></span><span class="service-label">CloudSearch</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ctr" data-service-href="https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2" class="service-link service-link-ctr">
+                           <a href="https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ctr" style="background-position: -800px -24px">&nbsp;</span></span><span class="service-label">CloudTrail</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="cw" data-service-href="https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2" class="service-link service-link-cw">
+                           <a href="https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cw" style="background-position: -480px -24px">&nbsp;</span></span><span class="service-label">CloudWatch</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="cc" data-service-href="https://console.aws.amazon.com/codecommit/home?region=us-west-2" class="service-link service-link-cc">
+                           <a href="https://console.aws.amazon.com/codecommit/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cc" style="background-position: -1440px -24px">&nbsp;</span></span><span class="service-label">CodeCommit</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="cd" data-service-href="https://us-west-2.console.aws.amazon.com/codedeploy/home?region=us-west-2" class="service-link service-link-cd">
+                           <a href="https://us-west-2.console.aws.amazon.com/codedeploy/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cd" style="background-position: -1088px -24px">&nbsp;</span></span><span class="service-label">CodeDeploy</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="cp" data-service-href="https://us-west-2.console.aws.amazon.com/codepipeline/home?region=us-west-2" class="service-link service-link-cp">
+                           <a href="https://us-west-2.console.aws.amazon.com/codepipeline/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cp" style="background-position: -1408px -24px">&nbsp;</span></span><span class="service-label">CodePipeline</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="c" data-service-href="https://console.aws.amazon.com/cognito/home?region=us-west-2" class="service-link service-link-c">
+                           <a href="https://console.aws.amazon.com/cognito/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-c" style="background-position: -960px -24px">&nbsp;</span></span><span class="service-label">Cognito</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="cfg" data-service-href="https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2" class="service-link service-link-cfg">
+                           <a href="https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cfg" style="background-position: -1120px -24px">&nbsp;</span></span><span class="service-label">Config</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="dp" data-service-href="https://console.aws.amazon.com/datapipeline/home?region=us-west-2" class="service-link service-link-dp">
+                           <a href="https://console.aws.amazon.com/datapipeline/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-dp" style="background-position: -672px -24px">&nbsp;</span></span><span class="service-label">Data Pipeline</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="df" data-service-href="https://us-west-2.console.aws.amazon.com/devicefarm/home?region=us-west-2" class="service-link service-link-df">
+                           <a href="https://us-west-2.console.aws.amazon.com/devicefarm/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-df" style="background-position: -1312px -24px">&nbsp;</span></span><span class="service-label">Device Farm</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="dc" data-service-href="https://us-west-2.console.aws.amazon.com/directconnect/home?region=us-west-2" class="service-link service-link-dc">
+                           <a href="https://us-west-2.console.aws.amazon.com/directconnect/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-dc" style="background-position: -608px -24px">&nbsp;</span></span><span class="service-label">Direct Connect</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ds" data-service-href="https://console.aws.amazon.com/directoryservice/home?region=us-west-2" class="service-link service-link-ds">
+                           <a href="https://console.aws.amazon.com/directoryservice/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ds" style="background-position: -1056px -24px">&nbsp;</span></span><span class="service-label">Directory Service</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                     </ul>
+                     <ul class="service-menu-column service-name-column">
+                        <li data-service-id="dms" data-service-href="https://console.aws.amazon.com/dms/home?region=us-west-2" class="service-link service-link-dms preview-service">
+                           <a href="https://console.aws.amazon.com/dms/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-dms" style="background-position: -1664px -24px">&nbsp;</span></span><span class="service-label">DMS</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ddb" data-service-href="https://us-west-2.console.aws.amazon.com/dynamodb/home?region=us-west-2" class="service-link service-link-ddb">
+                           <a href="https://us-west-2.console.aws.amazon.com/dynamodb/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ddb" style="background-position: -128px -24px">&nbsp;</span></span><span class="service-label">DynamoDB</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ec2" data-service-href="https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2" class="service-link service-link-ec2">
+                           <a href="https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ec2" style="background-position: -0px -24px">&nbsp;</span></span><span class="service-label">EC2</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ecs" data-service-href="https://us-west-2.console.aws.amazon.com/ecs/home?region=us-west-2" class="service-link service-link-ecs">
+                           <a href="https://us-west-2.console.aws.amazon.com/ecs/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ecs" style="background-position: -1248px -24px">&nbsp;</span></span><span class="service-label">EC2 Container Service</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="eb" data-service-href="https://us-west-2.console.aws.amazon.com/elasticbeanstalk/home?region=us-west-2" class="service-link service-link-eb">
+                           <a href="https://us-west-2.console.aws.amazon.com/elasticbeanstalk/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-eb" style="background-position: -544px -24px">&nbsp;</span></span><span class="service-label">Elastic Beanstalk</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="efs" data-service-href="https://us-west-2.console.aws.amazon.com/efs/home?region=us-west-2" class="service-link service-link-efs preview-service">
+                           <a href="https://us-west-2.console.aws.amazon.com/efs/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-efs" style="background-position: -1280px -24px">&nbsp;</span></span><span class="service-label">Elastic File System</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ets" data-service-href="https://console.aws.amazon.com/elastictranscoder/home?region=us-west-2" class="service-link service-link-ets">
+                           <a href="https://console.aws.amazon.com/elastictranscoder/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ets" style="background-position: -704px -24px">&nbsp;</span></span><span class="service-label">Elastic Transcoder</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="elc" data-service-href="https://us-west-2.console.aws.amazon.com/elasticache/home?region=us-west-2" class="service-link service-link-elc">
+                           <a href="https://us-west-2.console.aws.amazon.com/elasticache/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-elc" style="background-position: -160px -24px">&nbsp;</span></span><span class="service-label">ElastiCache</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="es" data-service-href="https://us-west-2.console.aws.amazon.com/es/home?region=us-west-2" class="service-link service-link-es">
+                           <a href="https://us-west-2.console.aws.amazon.com/es/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-es" style="background-position: -1472px -24px">&nbsp;</span></span><span class="service-label">Elasticsearch Service</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="emr" data-service-href="https://us-west-2.console.aws.amazon.com/elasticmapreduce/home?region=us-west-2" class="service-link service-link-emr">
+                           <a href="https://us-west-2.console.aws.amazon.com/elasticmapreduce/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-emr" style="background-position: -32px -24px">&nbsp;</span></span><span class="service-label">EMR</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="gl" data-service-href="https://us-west-2.console.aws.amazon.com/glacier/home?region=us-west-2" class="service-link service-link-gl">
+                           <a href="https://us-west-2.console.aws.amazon.com/glacier/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-gl" style="background-position: -640px -24px">&nbsp;</span></span><span class="service-label">Glacier</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="iam" data-service-href="https://console.aws.amazon.com/iam/home?region=us-west-2" class="service-link service-link-iam">
+                           <a href="https://console.aws.amazon.com/iam/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-iam" style="background-position: -448px -24px">&nbsp;</span></span><span class="service-label">IAM</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="imex" data-service-href="https://console.aws.amazon.com/importexport/home?region=us-west-2" class="service-link service-link-imex exclude-federated">
+                           <a href="https://console.aws.amazon.com/importexport/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-imex" style="background-position: -1568px -24px">&nbsp;</span></span><span class="service-label">Import/Export Snowball</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ins" data-service-href="https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2" class="service-link service-link-ins preview-service">
+                           <a href="https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ins" style="background-position: -1536px -24px">&nbsp;</span></span><span class="service-label">Inspector</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ki" data-service-href="https://us-west-2.console.aws.amazon.com/kinesis/home?region=us-west-2" class="service-link service-link-ki">
+                           <a href="https://us-west-2.console.aws.amazon.com/kinesis/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ki" style="background-position: -896px -24px">&nbsp;</span></span><span class="service-label">Kinesis</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="lam" data-service-href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" class="service-link service-link-lam">
+                           <a href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-lam" style="background-position: -1152px -24px">&nbsp;</span></span><span class="service-label">Lambda</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ml" data-service-href="https://console.aws.amazon.com/machinelearning/home?region=us-west-2" class="service-link service-link-ml">
+                           <a href="https://console.aws.amazon.com/machinelearning/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ml" style="background-position: -1216px -24px">&nbsp;</span></span><span class="service-label">Machine Learning</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="a" data-service-href="https://console.aws.amazon.com/mobileanalytics/home?region=us-west-2" class="service-link service-link-a">
+                           <a href="https://console.aws.amazon.com/mobileanalytics/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-a" style="background-position: -992px -24px">&nbsp;</span></span><span class="service-label">Mobile Analytics</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                     </ul>
+                     <ul class="service-menu-column service-name-column">
+                        <li data-service-id="mh" data-service-href="https://console.aws.amazon.com/mobilehub/home?region=us-west-2" class="service-link service-link-mh beta-service">
+                           <a href="https://console.aws.amazon.com/mobilehub/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-mh" style="background-position: -1600px -24px">&nbsp;</span></span><span class="service-label">Mobile Hub</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ops" data-service-href="https://console.aws.amazon.com/opsworks/home?region=us-west-2" class="service-link service-link-ops">
+                           <a href="https://console.aws.amazon.com/opsworks/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ops" style="background-position: -768px -24px">&nbsp;</span></span><span class="service-label">OpsWorks</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="rds" data-service-href="https://us-west-2.console.aws.amazon.com/rds/home?region=us-west-2" class="service-link service-link-rds">
+                           <a href="https://us-west-2.console.aws.amazon.com/rds/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-rds" style="background-position: -192px -24px">&nbsp;</span></span><span class="service-label">RDS</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="rs" data-service-href="https://us-west-2.console.aws.amazon.com/redshift/home?region=us-west-2" class="service-link service-link-rs">
+                           <a href="https://us-west-2.console.aws.amazon.com/redshift/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-rs" style="background-position: -736px -24px">&nbsp;</span></span><span class="service-label">Redshift</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="r53" data-service-href="https://console.aws.amazon.com/route53/home?region=us-west-2" class="service-link service-link-r53">
+                           <a href="https://console.aws.amazon.com/route53/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-r53" style="background-position: -256px -24px">&nbsp;</span></span><span class="service-label">Route 53</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="s3" data-service-href="https://console.aws.amazon.com/s3/home?region=us-west-2" class="service-link service-link-s3">
+                           <a href="https://console.aws.amazon.com/s3/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-s3" style="background-position: -96px -24px">&nbsp;</span></span><span class="service-label">S3</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="sc" data-service-href="https://us-west-2.console.aws.amazon.com/catalog/home?region=us-west-2" class="service-link service-link-sc">
+                           <a href="https://us-west-2.console.aws.amazon.com/catalog/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-sc" style="background-position: -1376px -24px">&nbsp;</span></span><span class="service-label">Service Catalog</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ses" data-service-href="https://us-west-2.console.aws.amazon.com/ses/home?region=us-west-2" class="service-link service-link-ses">
+                           <a href="https://us-west-2.console.aws.amazon.com/ses/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ses" style="background-position: -288px -24px">&nbsp;</span></span><span class="service-label">SES</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="sns" data-service-href="https://us-west-2.console.aws.amazon.com/sns/home?region=us-west-2" class="service-link service-link-sns">
+                           <a href="https://us-west-2.console.aws.amazon.com/sns/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-sns" style="background-position: -320px -24px">&nbsp;</span></span><span class="service-label">SNS</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="sqs" data-service-href="https://console.aws.amazon.com/sqs/home?region=us-west-2" class="service-link service-link-sqs">
+                           <a href="https://console.aws.amazon.com/sqs/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-sqs" style="background-position: -352px -24px">&nbsp;</span></span><span class="service-label">SQS</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="sg" data-service-href="https://us-west-2.console.aws.amazon.com/storagegateway/home?region=us-west-2" class="service-link service-link-sg">
+                           <a href="https://us-west-2.console.aws.amazon.com/storagegateway/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-sg" style="background-position: -64px -24px">&nbsp;</span></span><span class="service-label">Storage Gateway</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="swf" data-service-href="https://us-west-2.console.aws.amazon.com/swf/home?region=us-west-2" class="service-link service-link-swf">
+                           <a href="https://us-west-2.console.aws.amazon.com/swf/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-swf" style="background-position: -384px -24px">&nbsp;</span></span><span class="service-label">SWF</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="ta" data-service-href="https://console.aws.amazon.com/trustedadvisor/home?region=us-west-2" class="service-link service-link-ta">
+                           <a href="https://console.aws.amazon.com/trustedadvisor/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ta" style="background-position: -1024px -24px">&nbsp;</span></span><span class="service-label">Trusted Advisor</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="vpc" data-service-href="https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2" class="service-link service-link-vpc">
+                           <a href="https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-vpc" style="background-position: -224px -24px">&nbsp;</span></span><span class="service-label">VPC</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="waf" data-service-href="https://console.aws.amazon.com/waf/home?region=us-west-2" class="service-link service-link-waf">
+                           <a href="https://console.aws.amazon.com/waf/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-waf" style="background-position: -1504px -24px">&nbsp;</span></span><span class="service-label">WAF</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="z" data-service-href="https://console.aws.amazon.com/zocalo/home?region=us-west-2" class="service-link service-link-z">
+                           <a href="https://console.aws.amazon.com/zocalo/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-z" style="background-position: -928px -24px">&nbsp;</span></span><span class="service-label">WorkDocs</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="wkm" data-service-href="https://us-west-2.console.aws.amazon.com/workmail/home?region=us-west-2" class="service-link service-link-wkm">
+                           <a href="https://us-west-2.console.aws.amazon.com/workmail/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-wkm" style="background-position: -1184px -24px">&nbsp;</span></span><span class="service-label">WorkMail</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                        <li data-service-id="wks" data-service-href="https://us-west-2.console.aws.amazon.com/workspaces/home?region=us-west-2" class="service-link service-link-wks">
+                           <a href="https://us-west-2.console.aws.amazon.com/workspaces/home?region=us-west-2" target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-wks" style="background-position: -864px -24px">&nbsp;</span></span><span class="service-label">WorkSpaces</span></a>
+                           <div class="nav-menu-separator">&nbsp;</div>
+                        </li>
+                     </ul>
+                  </div>
+                  <div id="categoryServices">
+                     <ul class="service-menu-column service-category-description-column"></ul>
+                     <ul class="service-menu-column service-category-description-column"></ul>
+                     <ul class="service-menu-column service-category-description-column"></ul>
+                  </div>
+                  <div class="nav-menu-content-close">
+                     <div class="nav-menu-content-close-arrow">&nbsp;</div>
+                  </div>
+               </div>
+               <div class="nav-menu-content nav-menu-content-fullwidth" id="shortcutMenuContent" style="width: 960px;">
+                  <div id="nav-shortcuts-section">
+                     <p id="nav-shortcuts-instructions">To customize one-click navigation shortcuts simply drag your services to and from the menu bar above.</p>
+                     <div id="nav-shortcut-columns">
+                        <ul class="nav-shortcut-column">
+                           <li data-service-id="ag" data-service-href="https://us-west-2.console.aws.amazon.com/apigateway/home?region=us-west-2" class="service-link service-link-ag nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ag" style="background-position: -1344px -24px">&nbsp;</span></span><span class="service-label">API Gateway</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="aps" data-service-href="https://console.aws.amazon.com/appstream/home?region=us-west-2" class="service-link service-link-aps nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-aps" style="background-position: -832px -24px">&nbsp;</span></span><span class="service-label">AppStream</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="iot" data-service-href="https://us-west-2.console.aws.amazon.com/iot/home?region=us-west-2" class="service-link service-link-iot nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-iot" style="background-position: -1632px -24px">&nbsp;</span></span><span class="service-label">AWS IoT</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="acm" data-service-href="https://console.aws.amazon.com/acm/home?region=us-west-2" class="service-link service-link-acm nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-acm" style="background-position: -1696px -24px">&nbsp;</span></span><span class="service-label">Certificate Manager</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="cfo" data-service-href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2" class="service-link service-link-cfo nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cfo" style="background-position: -512px -24px">&nbsp;</span></span><span class="service-label">CloudFormation</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="cfr" data-service-href="https://console.aws.amazon.com/cloudfront/home?region=us-west-2" class="service-link service-link-cfr nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cfr" style="background-position: -416px -24px">&nbsp;</span></span><span class="service-label">CloudFront</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="cs" data-service-href="https://us-west-2.console.aws.amazon.com/cloudsearch/home?region=us-west-2" class="service-link service-link-cs nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cs" style="background-position: -576px -24px">&nbsp;</span></span><span class="service-label">CloudSearch</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ctr" data-service-href="https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2" class="service-link service-link-ctr nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ctr" style="background-position: -800px -24px">&nbsp;</span></span><span class="service-label">CloudTrail</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="cw" data-service-href="https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2" class="service-link service-link-cw nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cw" style="background-position: -480px -24px">&nbsp;</span></span><span class="service-label">CloudWatch</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="cc" data-service-href="https://console.aws.amazon.com/codecommit/home?region=us-west-2" class="service-link service-link-cc nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cc" style="background-position: -1440px -24px">&nbsp;</span></span><span class="service-label">CodeCommit</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="cd" data-service-href="https://us-west-2.console.aws.amazon.com/codedeploy/home?region=us-west-2" class="service-link service-link-cd nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cd" style="background-position: -1088px -24px">&nbsp;</span></span><span class="service-label">CodeDeploy</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="cp" data-service-href="https://us-west-2.console.aws.amazon.com/codepipeline/home?region=us-west-2" class="service-link service-link-cp nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cp" style="background-position: -1408px -24px">&nbsp;</span></span><span class="service-label">CodePipeline</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="c" data-service-href="https://console.aws.amazon.com/cognito/home?region=us-west-2" class="service-link service-link-c nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-c" style="background-position: -960px -24px">&nbsp;</span></span><span class="service-label">Cognito</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="cfg" data-service-href="https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2" class="service-link service-link-cfg nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-cfg" style="background-position: -1120px -24px">&nbsp;</span></span><span class="service-label">Config</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="dp" data-service-href="https://console.aws.amazon.com/datapipeline/home?region=us-west-2" class="service-link service-link-dp nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-dp" style="background-position: -672px -24px">&nbsp;</span></span><span class="service-label">Data Pipeline</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="df" data-service-href="https://us-west-2.console.aws.amazon.com/devicefarm/home?region=us-west-2" class="service-link service-link-df nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-df" style="background-position: -1312px -24px">&nbsp;</span></span><span class="service-label">Device Farm</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="dc" data-service-href="https://us-west-2.console.aws.amazon.com/directconnect/home?region=us-west-2" class="service-link service-link-dc nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-dc" style="background-position: -608px -24px">&nbsp;</span></span><span class="service-label">Direct Connect</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ds" data-service-href="https://console.aws.amazon.com/directoryservice/home?region=us-west-2" class="service-link service-link-ds nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ds" style="background-position: -1056px -24px">&nbsp;</span></span><span class="service-label">Directory Service</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                        </ul>
+                        <ul class="nav-shortcut-column">
+                           <li data-service-id="dms" data-service-href="https://console.aws.amazon.com/dms/home?region=us-west-2" class="service-link service-link-dms nav-shortcut-option preview-service">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-dms" style="background-position: -1664px -24px">&nbsp;</span></span><span class="service-label">DMS</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ddb" data-service-href="https://us-west-2.console.aws.amazon.com/dynamodb/home?region=us-west-2" class="service-link service-link-ddb nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ddb" style="background-position: -128px -24px">&nbsp;</span></span><span class="service-label">DynamoDB</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ec2" data-service-href="https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2" class="service-link service-link-ec2 nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ec2" style="background-position: -0px -24px">&nbsp;</span></span><span class="service-label">EC2</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ecs" data-service-href="https://us-west-2.console.aws.amazon.com/ecs/home?region=us-west-2" class="service-link service-link-ecs nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ecs" style="background-position: -1248px -24px">&nbsp;</span></span><span class="service-label">EC2 Container Service</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="eb" data-service-href="https://us-west-2.console.aws.amazon.com/elasticbeanstalk/home?region=us-west-2" class="service-link service-link-eb nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-eb" style="background-position: -544px -24px">&nbsp;</span></span><span class="service-label">Elastic Beanstalk</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="efs" data-service-href="https://us-west-2.console.aws.amazon.com/efs/home?region=us-west-2" class="service-link service-link-efs nav-shortcut-option preview-service">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-efs" style="background-position: -1280px -24px">&nbsp;</span></span><span class="service-label">Elastic File System</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ets" data-service-href="https://console.aws.amazon.com/elastictranscoder/home?region=us-west-2" class="service-link service-link-ets nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ets" style="background-position: -704px -24px">&nbsp;</span></span><span class="service-label">Elastic Transcoder</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="elc" data-service-href="https://us-west-2.console.aws.amazon.com/elasticache/home?region=us-west-2" class="service-link service-link-elc nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-elc" style="background-position: -160px -24px">&nbsp;</span></span><span class="service-label">ElastiCache</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="es" data-service-href="https://us-west-2.console.aws.amazon.com/es/home?region=us-west-2" class="service-link service-link-es nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-es" style="background-position: -1472px -24px">&nbsp;</span></span><span class="service-label">Elasticsearch Service</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="emr" data-service-href="https://us-west-2.console.aws.amazon.com/elasticmapreduce/home?region=us-west-2" class="service-link service-link-emr nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-emr" style="background-position: -32px -24px">&nbsp;</span></span><span class="service-label">EMR</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="gl" data-service-href="https://us-west-2.console.aws.amazon.com/glacier/home?region=us-west-2" class="service-link service-link-gl nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-gl" style="background-position: -640px -24px">&nbsp;</span></span><span class="service-label">Glacier</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="iam" data-service-href="https://console.aws.amazon.com/iam/home?region=us-west-2" class="service-link service-link-iam nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-iam" style="background-position: -448px -24px">&nbsp;</span></span><span class="service-label">IAM</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="imex" data-service-href="https://console.aws.amazon.com/importexport/home?region=us-west-2" class="service-link service-link-imex nav-shortcut-option exclude-federated">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-imex" style="background-position: -1568px -24px">&nbsp;</span></span><span class="service-label">Import/Export Snowball</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ins" data-service-href="https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2" class="service-link service-link-ins nav-shortcut-option preview-service">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ins" style="background-position: -1536px -24px">&nbsp;</span></span><span class="service-label">Inspector</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ki" data-service-href="https://us-west-2.console.aws.amazon.com/kinesis/home?region=us-west-2" class="service-link service-link-ki nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ki" style="background-position: -896px -24px">&nbsp;</span></span><span class="service-label">Kinesis</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="lam" data-service-href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" class="service-link service-link-lam nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-lam" style="background-position: -1152px -24px">&nbsp;</span></span><span class="service-label">Lambda</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ml" data-service-href="https://console.aws.amazon.com/machinelearning/home?region=us-west-2" class="service-link service-link-ml nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ml" style="background-position: -1216px -24px">&nbsp;</span></span><span class="service-label">Machine Learning</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="a" data-service-href="https://console.aws.amazon.com/mobileanalytics/home?region=us-west-2" class="service-link service-link-a nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-a" style="background-position: -992px -24px">&nbsp;</span></span><span class="service-label">Mobile Analytics</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                        </ul>
+                        <ul class="nav-shortcut-column">
+                           <li data-service-id="mh" data-service-href="https://console.aws.amazon.com/mobilehub/home?region=us-west-2" class="service-link service-link-mh nav-shortcut-option beta-service">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-mh" style="background-position: -1600px -24px">&nbsp;</span></span><span class="service-label">Mobile Hub</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ops" data-service-href="https://console.aws.amazon.com/opsworks/home?region=us-west-2" class="service-link service-link-ops nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ops" style="background-position: -768px -24px">&nbsp;</span></span><span class="service-label">OpsWorks</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="rds" data-service-href="https://us-west-2.console.aws.amazon.com/rds/home?region=us-west-2" class="service-link service-link-rds nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-rds" style="background-position: -192px -24px">&nbsp;</span></span><span class="service-label">RDS</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="rs" data-service-href="https://us-west-2.console.aws.amazon.com/redshift/home?region=us-west-2" class="service-link service-link-rs nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-rs" style="background-position: -736px -24px">&nbsp;</span></span><span class="service-label">Redshift</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="r53" data-service-href="https://console.aws.amazon.com/route53/home?region=us-west-2" class="service-link service-link-r53 nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-r53" style="background-position: -256px -24px">&nbsp;</span></span><span class="service-label">Route 53</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="s3" data-service-href="https://console.aws.amazon.com/s3/home?region=us-west-2" class="service-link service-link-s3 nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-s3" style="background-position: -96px -24px">&nbsp;</span></span><span class="service-label">S3</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="sc" data-service-href="https://us-west-2.console.aws.amazon.com/catalog/home?region=us-west-2" class="service-link service-link-sc nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-sc" style="background-position: -1376px -24px">&nbsp;</span></span><span class="service-label">Service Catalog</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ses" data-service-href="https://us-west-2.console.aws.amazon.com/ses/home?region=us-west-2" class="service-link service-link-ses nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ses" style="background-position: -288px -24px">&nbsp;</span></span><span class="service-label">SES</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="sns" data-service-href="https://us-west-2.console.aws.amazon.com/sns/home?region=us-west-2" class="service-link service-link-sns nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-sns" style="background-position: -320px -24px">&nbsp;</span></span><span class="service-label">SNS</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="sqs" data-service-href="https://console.aws.amazon.com/sqs/home?region=us-west-2" class="service-link service-link-sqs nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-sqs" style="background-position: -352px -24px">&nbsp;</span></span><span class="service-label">SQS</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="sg" data-service-href="https://us-west-2.console.aws.amazon.com/storagegateway/home?region=us-west-2" class="service-link service-link-sg nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-sg" style="background-position: -64px -24px">&nbsp;</span></span><span class="service-label">Storage Gateway</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="swf" data-service-href="https://us-west-2.console.aws.amazon.com/swf/home?region=us-west-2" class="service-link service-link-swf nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-swf" style="background-position: -384px -24px">&nbsp;</span></span><span class="service-label">SWF</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="ta" data-service-href="https://console.aws.amazon.com/trustedadvisor/home?region=us-west-2" class="service-link service-link-ta nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-ta" style="background-position: -1024px -24px">&nbsp;</span></span><span class="service-label">Trusted Advisor</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="vpc" data-service-href="https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2" class="service-link service-link-vpc nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-vpc" style="background-position: -224px -24px">&nbsp;</span></span><span class="service-label">VPC</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="waf" data-service-href="https://console.aws.amazon.com/waf/home?region=us-west-2" class="service-link service-link-waf nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-waf" style="background-position: -1504px -24px">&nbsp;</span></span><span class="service-label">WAF</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="z" data-service-href="https://console.aws.amazon.com/zocalo/home?region=us-west-2" class="service-link service-link-z nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-z" style="background-position: -928px -24px">&nbsp;</span></span><span class="service-label">WorkDocs</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="wkm" data-service-href="https://us-west-2.console.aws.amazon.com/workmail/home?region=us-west-2" class="service-link service-link-wkm nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-wkm" style="background-position: -1184px -24px">&nbsp;</span></span><span class="service-label">WorkMail</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                           <li data-service-id="wks" data-service-href="https://us-west-2.console.aws.amazon.com/workspaces/home?region=us-west-2" class="service-link service-link-wks nav-shortcut-option">
+                              <a target="_top"><span class="service-icon-wrapper"><span class="service-icon service-icon-size-med service-icon-svc-wks" style="background-position: -864px -24px">&nbsp;</span></span><span class="service-label">WorkSpaces</span></a>
+                              <div class="nav-menu-separator">&nbsp;</div>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div id="nav-settings-section">
+                     <h1>Settings</h1>
+                     <div id="nav-settings">
+                        <div class="nav-setting">
+                           <label for="toolbarMode">Toolbar Items</label>
+                           <select id="toolbarMode">
+                              <option value="tm-both" selected="selected">Icons and Text</option>
+                              <option value="tm-icon">Icons Only</option>
+                              <option value="tm-text">Text Only</option>
+                           </select>
+                        </div>
+                        <div class="nav-setting"><label for="enableNavMenuAnim">Animated Effects</label><input type="checkbox" id="enableNavMenuAnim" checked="checked" value="true"></div>
+                     </div>
+                  </div>
+                  <div class="nav-menu-content-close">
+                     <div class="nav-menu-content-close-arrow">&nbsp;</div>
+                  </div>
+               </div>
+               <div class="nav-menu-content nav-menu-right-content" id="helpMenuContent" style="left: 820.109px;"><a class="awsc-relative-url" data-awsc-service-id="s" id="aws-support" href="https://console.aws.amazon.com/support/home?region=us-west-2" target="_top">Support Center</a><a id="aws-forums" href="https://forums.aws.amazon.com" target="_blank">Forums</a><a id="aws-documentation" href="https://aws.amazon.com/documentation/" target="_blank">Documentation</a><a id="aws-training" href="https://aws.amazon.com/training/" target="_blank">Training</a><a id="aws-other-resources" href="https://aws.amazon.com/resources/" target="_blank">Other Resources</a></div>
+               <div id="regionMenuContent" class="nav-menu-content nav-menu-right-content" style="left: 654.031px;"><a target="_top" class="region available-region" data-region-id="us-east-1" href="https://console.aws.amazon.com/console/home?region=us-east-1">US East (N. Virginia)</a><a target="_top" class="region available-region" data-region-id="us-west-1" href="https://us-west-1.console.aws.amazon.com/console/home?region=us-west-1">US West (N. California)</a><span class="region current-region">US West (Oregon)</span><a target="_top" class="region available-region" data-region-id="eu-west-1" href="https://eu-west-1.console.aws.amazon.com/console/home?region=eu-west-1">EU (Ireland)</a><a target="_top" class="region available-region" data-region-id="eu-central-1" href="https://eu-central-1.console.aws.amazon.com/console/home?region=eu-central-1">EU (Frankfurt)</a><a target="_top" class="region available-region" data-region-id="ap-northeast-1" href="https://ap-northeast-1.console.aws.amazon.com/console/home?region=ap-northeast-1">Asia Pacific (Tokyo)</a><a target="_top" class="region available-region" data-region-id="ap-northeast-2" href="https://ap-northeast-2.console.aws.amazon.com/console/home?region=ap-northeast-2">Asia Pacific (Seoul)</a><a target="_top" class="region available-region" data-region-id="ap-southeast-1" href="https://ap-southeast-1.console.aws.amazon.com/console/home?region=ap-southeast-1">Asia Pacific (Singapore)</a><a target="_top" class="region available-region" data-region-id="ap-southeast-2" href="https://ap-southeast-2.console.aws.amazon.com/console/home?region=ap-southeast-2">Asia Pacific (Sydney)</a><a target="_top" class="region available-region" data-region-id="sa-east-1" href="https://sa-east-1.console.aws.amazon.com/console/home?region=sa-east-1">South America (São Paulo)</a></div>
+               <div class="nav-menu-content awsc-switch-role-support" id="usernameMenuContent" style="left: 591.203px; top: 38px; display: none;">
+                  <div class="awsc-username-menu-main">
+                     <div id="awsc-login-account-section">
+                        <div class="awsc-username-menu-section" id="awsc-username-menu-optional-items"><a id="aws-my-account" href="https://portal.aws.amazon.com/gp/aws/manageYourAccount" target="_blank">My Account</a><a class="awsc-relative-url" data-awsc-service-id="b" id="aws-billing-console" href="https://console.aws.amazon.com/billing/home?region=us-west-2" target="_top">Billing &amp; Cost Management</a><a class="awsc-relative-url" data-awsc-service-id="iam" id="aws-security-credentials" href="https://console.aws.amazon.com/iam/home?region=us-west-2#security_credential" target="_top">Security Credentials</a><a class="awsc-relative-url" data-awsc-service-id="iam" id="aws-security-credentials-iam" href="https://console.aws.amazon.com/iam/home?region=us-west-2#my_password" target="_top">Security Credentials</a></div>
+                     </div>
+                  </div>
+                  <div id="awsc-username-menu-footer"><a id="aws-console-logout" href="logout!doLogout" target="_top">Sign Out</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

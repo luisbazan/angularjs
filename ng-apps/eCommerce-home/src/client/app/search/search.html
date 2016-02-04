@@ -1,0 +1,15 @@
+<div class="s-widget">
+    <!-- Heading -->
+    <h4><i class="fa fa-search"></i> Search</h4>
+    <!-- Widgets Content -->
+    <div class="widget-content search" data-ng-controller="Search as vm">
+        <form role="form">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Type Something" ng-model="vm.keyword" />
+                <span class="input-group-btn">
+                <button class="btn btn-verizon-red" type="button" data-ng-click="vm.loadMoreNews()">Search</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

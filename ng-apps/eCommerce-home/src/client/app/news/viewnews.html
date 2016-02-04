@@ -1,0 +1,21 @@
+<div class="news-container">
+    <h4><i class="fa fa-newspaper-o"></i> ETMS News</h4>
+    <div class="news-content">
+        <!-- News Meta -->
+        <div class="news-meta">
+            {{vm.modifiedBy}}
+            <!-- Author -->
+            <span class="news-author"><a href="#">{{vm.author}}</a></span>
+            {{vm.separator}}
+            <!-- Date -->
+            <span class="news-date">{{vm.lastUpdateTime}}</span>
+        </div>
+        <br/>
+        <!-- Heading -->
+        <h1>{{vm.title}}</h1>
+        <br/>
+        <!-- Excerpt -->
+        <!-- <p data-ng-bind-html="vm.contentHtml"></p>  -->
+        <p marked="vm.contentHtml"></p>
+    </div>
+</div>

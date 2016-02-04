@@ -1,0 +1,43 @@
+{
+  "name": "eCommerce-home",
+  "version": "1.0.0",
+  "description": "eCommerce home page",
+  "keywords": [
+    "eCommerce",
+    "home",
+    "page"
+  ],
+  "authors": [
+    "Luis Bazan Chavez Team"
+  ],
+  "license": "MIT",
+  "homepage": "https://onestash.verizon.com/scm/tmmva/etms.cl.git",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.4.8"
+  },
+  "dependencies": {
+    "angular": "~1.4.8",
+    "toastr": "~2.1.2",
+    "bootstrap": "~3.3.6",
+    "moment": "~2.11.1",
+    "jquery": "~2.2.0",
+    "angular-resource": "~1.4.8",
+    "angular-aria": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "angular-animate": "~1.4.8",
+    "angular-sanitize": "~1.4.8",
+    "font-awesome": "~4.5.0",
+    "extras.angular.plus": "~0.9.3",
+    "angular-bootstrap": "~1.0.3",
+    "angular-marked": "~1.0.1"
+  },
+  "main": "",
+  "moduleType": []
+}

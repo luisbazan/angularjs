@@ -1,0 +1,73 @@
+<div class="news-container" data-ng-controller="Feature as vm1">
+    <div ng-hide="vm.newsLoaded">Loading News...</div>
+    <div ng-show="vm.newsLoaded">
+        <h4><i class="fa fa-newspaper-o"></i> ETMS News</h4>
+        <div class="row news-highlights">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <!-- News item starts -->
+                <div class="news-item news-large">
+                    <!-- News Img -->
+                    <div class="news-img">
+                        <!-- Image -->
+                        <a href="#/news/{{vm.mainNews.id}}"><img ng-src="{{vm.mainNews.imgSrc}}" alt="" class="img-responsive" /></a>
+                    </div>
+                    <!-- News Content -->
+                    <div class="news-content">
+                        <!-- Heading -->
+                        <h3><a href="#/news/{{vm.mainNews.id}}">{{vm.mainNews.title}}</a></h3>
+                        <!-- News Meta -->
+                        <div class="news-meta">
+                            Modified by
+                            <!-- Author -->
+                            <span class="news-author"><a href="#">{{vm.mainNews.lastUpdateUserId.name}}</a></span>
+                            -
+                            <!-- Date -->
+                            <span class="news-date">{{vm.mainNews.lastUpdateTime}}</span>
+                        </div>
+                        <!-- Excerpt -->
+                        <p>{{vm.mainNews.description}}</p>
+                    </div>
+                </div>
+                <!-- News item ends -->
+            </div>
+        </div>
+
+        <!-- ALl News Section-->
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+              <!-- News item starts -->
+                <div class="news-item news-small" data-ng-repeat="n in vm.allNews">
+                    <!-- News Img -->
+                    <div class="news-img">
+                        <!-- Image -->
+                        <a href="#/news/{{n.id}}"><img ng-src="{{n.imgSrc}}" alt="" class="img-responsive" /></a>
+                    </div>
+                    <!-- News Content -->
+                    <div class="news-content">
+                        <!-- Heading -->
+                        <h3><a href="#/news/{{n.id}}">{{n.title}}</a></h3>
+                        <!-- News Meta -->
+                        <div class="news-meta">
+                            Modified by
+                            <!-- Author -->
+                            <span class="news-author"><a href="#">{{n.lastUpdateUserId.name}}</a></span>
+                            -
+                            <!-- Date -->
+                            <span class="news-date">{{n.lastUpdateTime}}</span>
+                        </div>
+                        <!-- Excerpt -->
+                        <p>{{n.description}}</p>
+                    </div>
+                </div>
+                <!-- News item ends -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="button-container">
+                    <button type="button" class="btn btn-default btn-lg btn-block" data-ng-click="vm.loadMoreNews()">Load More News</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

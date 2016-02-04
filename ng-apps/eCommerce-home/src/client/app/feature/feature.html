@@ -1,0 +1,28 @@
+<!-- Feature News Widget -->
+<div class="s-widget" data-ng-controller="Feature as vm">
+<!-- Widgets Content -->
+  <div class="widget-content feature">
+    <!-- News item starts -->
+    <div class="news-item news-feature">
+      <div data-ng-bind-html="vm.divFeatureImageLink" class="news-img"></div>
+
+      <!-- News Content -->
+      <div class="news-content">
+          <!-- Heading -->
+          <h3>{{vm.title}}</h3>
+          <!-- News Meta -->
+          <div class="news-meta">
+              {{vm.postedBy}}
+              <!-- Author -->
+              <span class="news-author"><a href="#">{{vm.author}}</a></span>
+              {{vm.separator}}
+              <!-- Date -->
+              <span class="news-date">{{vm.date}}</span>
+          </div>
+          <!-- Excerpt -->
+          <!--<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae  rerum hic tenetur.</p> -->
+      </div>
+    </div>
+    <!-- News item ends -->
+  </div>
+</div>
